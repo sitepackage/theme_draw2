@@ -7,6 +7,21 @@
           <span class="featured_image curved" style="background-image: url('[% product.featured_image.src | image_uri ('medium') %]')"></span>
         </a>
       </div>
+      [%- if product.images.first %]
+      <div class="fancybox extra_images">
+         [%- if product.images.first %]
+        <ul>
+          [%- foreach image in product.images %]
+          <li [% 'class="last"' if loop.count % 4 == 0 %]>
+              <a rel="product_images" href="[% image.src | image_uri ('original') %]">
+                <span style="background-image: url('[% image.src | image_uri ('tiny') %]')" class="medium_curved"></span>
+              </a>
+            </li>
+            [%- end %]
+          </ul>
+          [%- end %]
+      </div>
+      [%- end %]      
     </div>
 
     <div class="details">
@@ -60,23 +75,6 @@
       </form>
     </div>
     <div class="clear"></div>
-
-  [%- if product.images.first %]
-  <div class="fancybox extra_images">
-     [%- if product.images.first %]
-    <ul>
-      [%- foreach image in product.images %]
-      <li>
-          <a rel="product_images" href="[% image.src | image_uri ('original') %]">
-            <span style="background-image: url('[% image.src | image_uri ('thumb') %]')" class="medium_curved"></span>
-          </a>
-        </li>
-        [%- end %]
-      </ul>
-      [%- end %]
-  </div>
-  <div class="clear"></div>
-  [%- end %]
 
     [%- if product.content %]
     <div class="description">
